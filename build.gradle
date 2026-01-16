@@ -1,0 +1,37 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.4.1'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.prueba'
+version = '0.0.1-SNAPSHOT'
+description = 'Construir una API de peliculas usando Spring'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// Web básica
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	// IA - Usa SOLO estas dos y que tengan la MISMA VERSIÓN
+	// He elegido la 0.35.0 porque es la más estable para aprender
+	implementation 'dev.langchain4j:langchain4j-open-ai-spring-boot-starter:0.35.0'
+	implementation 'dev.langchain4j:langchain4j-spring-boot-starter:0.35.0'
+
+	// Testing (Corregido)
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
